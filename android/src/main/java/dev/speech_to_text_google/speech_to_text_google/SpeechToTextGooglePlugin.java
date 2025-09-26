@@ -125,22 +125,18 @@ public class SpeechToTextGooglePlugin implements FlutterPlugin, ActivityAware, P
                 if (result != null && !result.isEmpty()) {
                     String text = result.get(0);
                     if (eventSink != null) {
-                        // Normal result
                         eventSink.success(text);
                     }
                 } else {
-                    // No speech detected
                     if (eventSink != null) {
                         eventSink.error("NO_SPEECH", "No speech detected", null);
                     }
                 }
             } else if (resultCode == android.app.Activity.RESULT_CANCELED) {
-                // Dialog dismissed by user
                 if (eventSink != null) {
                     eventSink.error("CANCELLED", "User cancelled speech dialog", null);
                 }
             } else {
-                // Other unexpected result
                 if (eventSink != null) {
                     eventSink.error("UNKNOWN", "Unknown result from speech recognizer", null);
                 }
